@@ -79,44 +79,12 @@ informação e entretenimento para a comunidade LGBTQIA+ e aliados.
 
 </div>
 
-<!-- BOX PEDIDO DE MÚSICA VIA EMAIL -->
-<div class="mt-12 bg-white p-6 rounded-2xl shadow-xl border border-gray-200 max-w-2xl mx-auto">
+
+<!-- BOX PEDIDO DE MÚSICA COMO LINK -->
+<div class="mt-12 bg-white p-6 rounded-2xl shadow-xl border border-gray-200 max-w-2xl mx-auto cursor-pointer hover:scale-105 transition"
+     onclick="window.location.href='pedido_musica.html'">
   <h2 class="text-xl mb-4 rainbow-text">🎤 Peça sua música</h2>
-
-  <form action="mailto:gutiamanda@icloud.com" method="GET" enctype="text/plain" class="flex flex-col gap-3">
-    <input type="text" name="nome" placeholder="Seu nome" required
-           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-    <input type="email" name="email" placeholder="Seu e-mail" required
-           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-    <input type="text" name="musica" placeholder="Nome da música que você quer ouvir" required
-           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-    <button type="submit" class="bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl hover:bg-indigo-600 transition">
-      Enviar
-    </button>
-  </form>
-</div>
-
-
-
-
-
-
-
-  
-<!-- BOX PEDIDO DE MÚSICA -->
-<div class="mt-12 bg-white p-6 rounded-2xl shadow-xl border border-gray-200 max-w-2xl mx-auto">
-  <h2 class="text-xl mb-4 rainbow-text">🎤 Peça sua música</h2>
-  <form action="pedido_musica.php" method="POST" class="flex flex-col gap-3">
-    <input type="text" name="nome" placeholder="Seu nome" required
-           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-    <input type="email" name="email" placeholder="Seu e-mail" required
-           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-    <input type="text" name="musica" placeholder="Nome da música que você quer ouvir" required
-           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-    <button type="submit" class="bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl hover:bg-indigo-600 transition">
-      Enviar
-    </button>
-  </form>
+  <p class="text-gray-600">Clique aqui para abrir o formulário e enviar o seu pedido de música!</p>
 </div>
 
 <!-- PLAYER FIXO -->
