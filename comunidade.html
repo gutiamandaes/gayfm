@@ -7,45 +7,56 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #000; }
+        /* MUDANÇA 1: Fundo Branco e Texto Preto */
+        body { font-family: 'Inter', sans-serif; background-color: white; color: black; }
+        
         .rainbow-line {
             background: linear-gradient(90deg, #ff0000, #ff8c00, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
             height: 6px;
         }
+
+        /* MUDANÇA 2: Cores individuais para as letras */
+        .letra-r { color: #ff0000; } /* Vermelho */
+        .letra-o { color: #ff8c00; } /* Laranja */
+        .letra-y { color: #ffdf00; } /* Amarelo */
+        .letra-g { color: #008000; } /* Verde */
+        .letra-b { color: #0000ff; } /* Azul */
+        .letra-v { color: #4b0082; } /* Anil */
+        .letra-p { color: #ee82ee; } /* Violeta */
+
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: white;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
         }
-        .glass-card:hover { transform: translateY(-5px); border-color: #0088cc; }
-        .telegram-blue { background-color: #0088cc; }
+        .glass-card:hover { transform: translateY(-5px); }
     </style>
 </head>
-<body class="text-white min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col">
 
     <div class="rainbow-line"></div>
 
     <nav class="p-6 flex justify-between items-center max-w-5xl mx-auto w-full">
-        <a href="index.html" class="font-black text-2xl tracking-tighter italic hover:opacity-80">GAY FM</a>
+        <a href="home.html" class="font-black text-2xl tracking-tighter italic text-black">GAY FM</a>
         <div class="space-x-4">
-            <a href="index.html" class="text-sm text-zinc-400 hover:text-white">Player</a>
-            <a href="pedido_musica.html" class="text-sm text-zinc-400 hover:text-white">Pedidos</a>
+            <a href="home.html" class="text-sm text-gray-500 hover:text-black">Voltar</a>
         </div>
     </nav>
 
     <main class="flex-grow flex flex-col items-center justify-center px-6 text-center">
         
         <div class="mb-12">
-            <h1 class="text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-                NOSSA TRIBO
+            <h1 class="text-6xl font-black mb-4 italic">
+                <span class="letra-r">N</span><span class="letra-o">O</span><span class="letra-y">S</span><span class="letra-g">S</span><span class="letra-b">A</span> 
+                <span class="letra-v">T</span><span class="letra-p">R</span><span class="letra-r">I</span><span class="letra-o">B</span><span class="letra-y">O</span>
             </h1>
-            <p class="text-zinc-400 text-lg max-w-md mx-auto">
-                Conecte-se com ouvintes de todo o Brasil, peça músicas e fique por dentro das novidades.
+            <p class="text-gray-500 text-lg max-w-md mx-auto">
+                Conecte-se com ouvintes de todo o Brasil no Telegram.
             </p>
         </div>
 
-        <div class="w-full max-w-md glass-card rounded-3xl p-10 shadow-2xl">
+        <div class="w-full max-w-md glass-card rounded-3xl p-10">
             <div class="flex justify-center mb-6">
                 <svg class="w-20 h-20 text-[#0088cc]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.92 9.03c-.145.64-.52.795-1.056.492l-2.924-2.154-1.411 1.358c-.156.156-.287.287-.588.287l.21-2.978 5.42-4.897c.235-.21-.051-.326-.364-.118l-6.699 4.22-2.887-.903c-.628-.196-.64-.628.131-.928l11.279-4.346c.523-.19.981.123.799.935z"/>
@@ -53,22 +64,17 @@
             </div>
             
             <h2 class="text-2xl font-bold mb-2">Grupo Oficial</h2>
-            <p class="text-zinc-500 text-sm mb-8 italic">t.me/gayfmbr</p>
+            <p class="text-gray-400 text-sm mb-8 italic">t.me/gayfmbr</p>
 
             <a href="https://t.me/gayfmbr" target="_blank" 
-               class="telegram-blue block w-full py-4 rounded-2xl font-bold text-lg hover:brightness-110 shadow-lg shadow-blue-900/20 transition-all">
+               class="bg-[#0088cc] text-white block w-full py-4 rounded-2xl font-bold text-lg hover:brightness-110 transition-all">
                 Entrar no Telegram
             </a>
         </div>
-
-        <p class="mt-12 text-zinc-600 text-xs">
-            Respeito e alegria são as únicas regras. Vem brilhar com a gente!
-        </p>
-
     </main>
 
-    <footer class="p-8 text-center text-zinc-800 text-[10px] uppercase tracking-[0.2em]">
-        Gay FM Brasil &bull; 2026 &bull; A Voz da Diversidade
+    <footer class="p-8 text-center text-gray-400 text-[10px] uppercase tracking-widest mb-24">
+        Gay FM Brasil &bull; 2026
     </footer>
 
 </body>
