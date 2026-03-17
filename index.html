@@ -81,11 +81,18 @@ informação e entretenimento para a comunidade LGBTQIA+ e aliados.
 
 <!-- BOX PEDIDO DE MÚSICA -->
 <div class="mt-12 bg-white p-6 rounded-2xl shadow-xl border border-gray-200 max-w-2xl mx-auto">
-<h2 class="text-xl mb-4 rainbow-text">🎤 Peça sua música</h2>
-<form action="#" method="POST" class="flex flex-col md:flex-row gap-3">
-<input type="text" name="musica" placeholder="Digite o nome da música ou artista" class="flex-1 p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-<button type="submit" class="bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl hover:bg-indigo-600 transition">Enviar</button>
-</form>
+  <h2 class="text-xl mb-4 rainbow-text">🎤 Peça sua música</h2>
+  <form action="pedido_musica.php" method="POST" class="flex flex-col gap-3">
+    <input type="text" name="nome" placeholder="Seu nome" required
+           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    <input type="email" name="email" placeholder="Seu e-mail" required
+           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    <input type="text" name="musica" placeholder="Nome da música que você quer ouvir" required
+           class="p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    <button type="submit" class="bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl hover:bg-indigo-600 transition">
+      Enviar
+    </button>
+  </form>
 </div>
 
 <!-- FOOTER COM PLAYER -->
