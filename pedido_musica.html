@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peça sua Música | Gay FM Brasil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .rainbow-border {
+            background: linear-gradient(90deg, #ff0000, #ff8c00, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+            padding-top: 6px;
+        }
+        body { background-color: #09090b; color: white; font-family: sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+    <div class="rainbow-border"></div>
+    
+    <nav class="p-6 flex justify-between items-center max-w-4xl mx-auto">
+        <a href="index.html" class="text-xl font-bold tracking-tighter hover:text-pink-500 transition">GAY FM BRASIL</a>
+        <a href="index.html" class="text-sm bg-white/10 px-4 py-2 rounded-full hover:bg-white/20">Voltar ao Player</a>
+    </nav>
+
+    <main class="max-w-4xl mx-auto p-6">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl font-black mb-2">FAÇA SEU PEDIDO</h1>
+            <p class="text-zinc-400">Escolha o hit que vai brilhar na nossa programação agora!</p>
+        </div>
+
+        <div class="glass rounded-3xl overflow-hidden shadow-2xl">
+            <iframe src="https://gayfmbr.mooo.com/public/gay_fm_brasil/requests" 
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    style="width: 100%; min-height: 800px; border: 0;">
+            </iframe>
+        </div>
+    </main>
+
+    <footer class="text-center p-10 text-zinc-600 text-xs">
+        &copy; 2026 GAY FM BRASIL - O som da diversidade.
+    </footer>
+</body>
+</html>
