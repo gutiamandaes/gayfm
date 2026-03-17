@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gay FM Brasil | Sem Interrupções</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; background: white; }
+        /* O conteúdo do site fica aqui */
+        #conteudo-principal {
+            width: 100%;
+            height: calc(100% - 90px); /* Desconta a altura do player */
+            border: none;
+        }
+        /* Player Fixo no Rodapé */
+        #player-fixo {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+        }
+        .rainbow-text {
+            background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <iframe src="home.html" name="janela_site" id="conteudo-principal"></iframe>
+
+    <div id="player-fixo">
+        <div class="max-w-4xl w-full px-6 flex items-center justify-between">
+            <p class="text-sm md:text-lg rainbow-text font-bold mr-4">🎧 AO VIVO: GAY FM BRASIL</p>
+            <audio id="radioPlayer" controls class="h-10">
+                <source src="https://gayfmbr.mooo.com/listen/gay_fm_brasil/radio.mp3" type="audio/mpeg">
+            </audio>
+        </div>
+    </div>
+
+</body>
+</html>
