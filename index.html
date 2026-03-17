@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -46,74 +45,61 @@ GAY FM BRASIL
 A rádio vibrante da comunidade LGBTQIA+
 </p>
 
-<!-- PLAYER -->
-<div class="bg-white mt-10 p-6 rounded-2xl shadow-xl border border-gray-200">
-
-<p class="text-lg mb-4 rainbow-text">🎧 Ao Vivo 24/7</p>
-
-<audio id="radioPlayer" controls style="width:100%;">
-<source src="https://gayfmbr.mooo.com/radio/8000/radio.mp3" type="audio/mpeg">
-</audio>
-
-</div>
-
-<!-- TOCANDO AGORA -->
-<div class="mt-10 bg-white p-6 rounded-2xl shadow-xl border border-gray-200">
-
-<h2 class="text-xl mb-4 rainbow-text">🎵 Tocando Agora</h2>
-
-<img src="https://via.placeholder.com/200" class="mx-auto rounded-xl mb-4">
-
-<p class="text-lg font-semibold">
-dj paulo pringles [fhgmgevuaom]
-</p>
-
-<p class="text-gray-500">
-summer beach 2024
-</p>
-
-</div>
-
 <!-- SOBRE -->
-<div class="mt-12 text-center">
-
+<div class="mt-8 text-center">
 <h2 class="text-2xl mb-4 rainbow-text">Sobre a Gay FM Brasil</h2>
-
 <p class="text-gray-600 max-w-2xl mx-auto">
 Somos mais que uma rádio. Somos uma voz para a diversidade, trazendo música,
 informação e entretenimento para a comunidade LGBTQIA+ e aliados.
 </p>
-
 </div>
 
 <!-- FEATURES -->
 <div class="grid md:grid-cols-2 gap-6 mt-10">
 
-<div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:scale-105 transition">
+<div onclick="window.location.href='#'" class="cursor-pointer bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:scale-105 transition">
 <h3 class="font-bold text-lg rainbow-text">🎶 Música 24/7</h3>
 <p class="text-gray-600">Programação musical ininterrupta com os maiores hits.</p>
 </div>
 
-<div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:scale-105 transition">
+<div onclick="window.location.href='#'" class="cursor-pointer bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:scale-105 transition">
 <h3 class="font-bold text-lg rainbow-text">🌈 Orgulho</h3>
 <p class="text-gray-600">Celebrando a diversidade e a comunidade LGBTQIA+.</p>
 </div>
 
-<div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:scale-105 transition">
+<div onclick="window.location.href='#'" class="cursor-pointer bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:scale-105 transition">
 <h3 class="font-bold text-lg rainbow-text">🤝 Comunidade</h3>
 <p class="text-gray-600">Um espaço seguro e acolhedor para todos.</p>
 </div>
 
-<div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:scale-105 transition">
+<div onclick="window.location.href='#'" class="cursor-pointer bg-white p-6 rounded-xl shadow-lg border border-gray-200 hover:scale-105 transition">
 <h3 class="font-bold text-lg rainbow-text">🌍 Do Brasil pro Mundo</h3>
 <p class="text-gray-600">Transmissão online para qualquer lugar do planeta.</p>
 </div>
 
 </div>
 
-<!-- FOOTER -->
+<!-- BOX PEDIDO DE MÚSICA -->
+<div class="mt-12 bg-white p-6 rounded-2xl shadow-xl border border-gray-200 max-w-2xl mx-auto">
+<h2 class="text-xl mb-4 rainbow-text">🎤 Peça sua música</h2>
+<form action="#" method="POST" class="flex flex-col md:flex-row gap-3">
+<input type="text" name="musica" placeholder="Digite o nome da música ou artista" class="flex-1 p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+<button type="submit" class="bg-indigo-500 text-white font-bold px-6 py-3 rounded-xl hover:bg-indigo-600 transition">Enviar</button>
+</form>
+</div>
+
+<!-- FOOTER COM PLAYER -->
 <footer class="mt-16 text-gray-500 text-sm">
-<span class="rainbow-text">Gay FM Brasil</span><br>
+
+<!-- PLAYER -->
+<div class="bg-white mt-6 p-6 rounded-2xl shadow-xl border border-gray-200">
+<p class="text-lg mb-4 rainbow-text">🎧 Ao Vivo 24/7</p>
+<audio id="radioPlayer" controls style="width:100%;">
+<source src="https://gayfmbr.mooo.com/radio/8000/radio.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<span class="rainbow-text mt-4 block">Gay FM Brasil</span><br>
 A rádio da diversidade — Todos os direitos reservados © 2026
 </footer>
 
