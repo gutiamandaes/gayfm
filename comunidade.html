@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* MUDANÇA 1: Fundo Branco e Texto Preto */
         body { font-family: 'Inter', sans-serif; background-color: white; color: black; }
         
         .rainbow-line {
@@ -15,14 +14,11 @@
             height: 6px;
         }
 
-        /* MUDANÇA 2: Cores individuais para as letras */
-        .letra-r { color: #ff0000; } /* Vermelho */
-        .letra-o { color: #ff8c00; } /* Laranja */
-        .letra-y { color: #ffdf00; } /* Amarelo */
-        .letra-g { color: #008000; } /* Verde */
-        .letra-b { color: #0000ff; } /* Azul */
-        .letra-v { color: #4b0082; } /* Anil */
-        .letra-p { color: #ee82ee; } /* Violeta */
+        /* Cores individuais para as letras do título */
+        .letra-r { color: #ff0000; } .letra-o { color: #ff8c00; } 
+        .letra-y { color: #ffdf00; } .letra-g { color: #008000; } 
+        .letra-b { color: #0000ff; } .letra-v { color: #4b0082; } 
+        .letra-p { color: #ee82ee; }
 
         .glass-card {
             background: white;
@@ -38,13 +34,15 @@
     <div class="rainbow-line"></div>
 
     <nav class="p-6 flex justify-between items-center max-w-5xl mx-auto w-full">
-        <a href="home.html" class="font-black text-2xl tracking-tighter italic text-black">GAY FM</a>
+        <a href="home.html">
+            <img src="logotipo.png" alt="Gay FM Logo" class="h-12 w-auto object-contain">
+        </a>
         <div class="space-x-4">
-            <a href="home.html" class="text-sm text-gray-500 hover:text-black">Voltar</a>
+            <a href="home.html" class="text-sm font-bold text-gray-500 hover:text-black">INÍCIO</a>
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col items-center justify-center px-6 text-center">
+    <main class="flex-grow flex flex-col items-center justify-center px-6 text-center py-10">
         
         <div class="mb-12">
             <h1 class="text-6xl font-black mb-4 italic">
@@ -56,9 +54,9 @@
             </p>
         </div>
 
-        <div class="w-full max-w-md glass-card rounded-3xl p-10">
+        <div class="w-full max-w-md glass-card rounded-3xl p-10 mb-10">
             <div class="flex justify-center mb-6">
-                <svg class="w-20 h-20 text-[#0088cc]" fill="currentColor" viewBox="0 0 24 24">
+                <svg class="w-16 h-16 text-[#0088cc]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.92 9.03c-.145.64-.52.795-1.056.492l-2.924-2.154-1.411 1.358c-.156.156-.287.287-.588.287l.21-2.978 5.42-4.897c.235-.21-.051-.326-.364-.118l-6.699 4.22-2.887-.903c-.628-.196-.64-.628.131-.928l11.279-4.346c.523-.19.981.123.799.935z"/>
                 </svg>
             </div>
@@ -71,9 +69,15 @@
                 Entrar no Telegram
             </a>
         </div>
+
+        <button onclick="location.href='home.html'" 
+                class="bg-gray-100 text-gray-600 px-8 py-3 rounded-full font-bold hover:bg-gray-200 transition-all text-sm uppercase tracking-widest">
+            ← Voltar para a Rádio
+        </button>
+
     </main>
 
-    <footer class="p-8 text-center text-gray-400 text-[10px] uppercase tracking-widest mb-24">
+    <footer class="p-8 text-center text-gray-400 text-[10px] uppercase tracking-widest mb-28">
         Gay FM Brasil &bull; 2026
     </footer>
 
