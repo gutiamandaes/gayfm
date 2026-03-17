@@ -7,36 +7,60 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 
-
 <style>
     body { font-family: 'Inter', sans-serif; background-color: white; }
     
+    /* TEXTO ARCO-ÍRIS (TÍTULOS) */
     .rainbow-text {
-    background: linear-gradient(
-        90deg,
-        #ff0000,
-        #ff7f00,
-        #ffff00,
-        #00ff00,
-        #00bfff,
-        #0000ff,
-        #8b00ff
-    );
-    background-size: 300% auto;
-    animation: rainbowMove 6s linear infinite;
+        background: linear-gradient(
+            90deg,
+            #ff0000,
+            #ff7f00,
+            #ffff00,
+            #00ff00,
+            #00bfff,
+            #0000ff,
+            #8b00ff
+        );
+        background-size: 300% auto;
+        animation: rainbowMove 6s linear infinite;
 
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 900;
-}
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+    }
 
-@keyframes rainbowMove {
-    0% { background-position: 0% center; }
-    100% { background-position: 300% center; }
-}
+    @keyframes rainbowMove {
+        0% { background-position: 0% center; }
+        100% { background-position: 300% center; }
+    }
+
+    /* TEXTO DA BARRA (DIREITA → ESQUERDA) */
+    .rainbow-flow {
+        background: linear-gradient(
+            270deg,
+            #ff0000,
+            #ff7f00,
+            #ffff00,
+            #00ff00,
+            #00bfff,
+            #0000ff,
+            #8b00ff
+        );
+        background-size: 300% auto;
+        animation: rainbowFlow 5s linear infinite;
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    @keyframes rainbowFlow {
+        0% { background-position: 300% center; }
+        100% { background-position: 0% center; }
+    }
 </style>
 
-    
 </head>
 <body class="text-black">
 
@@ -87,6 +111,13 @@
         A rádio da diversidade &bull; Todos os direitos reservados &copy; 2026
     </footer>
 
+</div>
+
+<!-- 🔥 BARRA FIXA INFERIOR -->
+<div class="fixed bottom-0 left-0 w-full bg-black text-center py-3 shadow-2xl">
+    <span class="rainbow-flow text-lg">
+        🎧 Ao Vivo 24/7 - Gay FM Brasil
+    </span>
 </div>
 
 </body>
