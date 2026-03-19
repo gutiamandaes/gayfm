@@ -1,4 +1,10 @@
 <div class="animate__animated animate__fadeIn">
+    <div class="flex justify-end mb-4">
+        <span onclick="carregarPagina('home.html')" class="text-[10px] tracking-widest font-black text-gray-500 hover:text-white uppercase cursor-pointer transition-all">
+            ← VOLTAR
+        </span>
+    </div>
+
     <header class="text-center mb-8">
         <h1 class="text-5xl rainbow-text italic tracking-tighter mb-2">HISTÓRICO</h1>
         <p class="text-gray-500 uppercase text-[10px] tracking-[0.3em]">Últimas músicas tocadas</p>
@@ -20,17 +26,14 @@
 </div>
 
 <script>
-    // Função interna da página de músicas
     function updateMusicasPage() {
         fetch("https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br")
             .then(res => res.json())
             .then(data => {
-                // Atualiza o destaque
                 document.getElementById('current-title-page').innerText = data.now_playing.song.title;
                 document.getElementById('current-artist-page').innerText = data.now_playing.song.artist;
                 document.getElementById('current-art-page').src = data.now_playing.song.art;
 
-                // Atualiza o histórico
                 let html = "";
                 data.song_history.forEach(item => {
                     html += `
@@ -43,7 +46,8 @@
                         </div>`;
                 });
                 document.getElementById('history-list').innerHTML = html;
-            });
+            })
+            .catch(err => console.error("Erro na página de músicas:", err));
     }
     updateMusicasPage();
 </script>
