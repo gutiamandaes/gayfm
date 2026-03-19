@@ -1,6 +1,6 @@
 <div class="animate__animated animate__fadeIn">
     <div class="flex justify-end mb-4">
-        <span onclick="carregarPagina('index.html')" class="text-[10px] tracking-widest font-black text-gray-500 hover:text-white uppercase cursor-pointer transition-all">
+        <span onclick="carregarPagina('home.html')" class="text-[10px] tracking-widest font-black text-gray-500 hover:text-white uppercase cursor-pointer transition-all">
             ← VOLTAR
         </span>
     </div>
@@ -22,32 +22,57 @@
     </div>
 
     <div id="history-list" class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl space-y-4">
-        </div>
+        <p class="text-center text-gray-600 text-xs animate-pulse">SINCRONIZANDO HISTÓRICO...</p>
+    </div>
 </div>
 
 <script>
-    function updateMusicasPage() {
-        fetch("https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br")
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('current-title-page').innerText = data.now_playing.song.title;
-                document.getElementById('current-artist-page').innerText = data.now_playing.song.artist;
-                document.getElementById('current-art-page').src = data.now_playing.song.art;
+    // Usamos uma função que roda imediatamente para garantir o carregamento
+    (function() {
+        console.log("Iniciando atualização do histórico...");
+        
+        function updateMusicasPage() {
+            fetch("https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br")
+                .then(res => res.json())
+                .then(data => {
+                    // Atualiza Tocando Agora
+                    const currentTitle = document.getElementById('current-title-page');
+                    if(currentTitle) {
+                        currentTitle.innerText = data.now_playing.song.title;
+                        document.getElementById('current-artist-page').innerText = data.now_playing.song.artist;
+                        document.getElementById('current-art-page').src = data.now_playing.song.art;
+                    }
 
-                let html = "";
-                data.song_history.forEach(item => {
-                    html += `
-                        <div class="flex items-center gap-4 py-2 border-b border-zinc-900 last:border-0 text-left">
-                            <img src="${item.song.art}" class="w-10 h-10 rounded-md">
-                            <div>
-                                <p class="text-white font-bold text-sm">${item.song.title}</p>
-                                <p class="text-gray-500 text-xs">${item.song.artist}</p>
-                            </div>
-                        </div>`;
+                    // Atualiza Lista de Histórico
+                    let html = "";
+                    if (data.song_history) {
+                        data.song_history.forEach(item => {
+                            html += `
+                                <div class="flex items-center gap-4 py-2 border-b border-zinc-900 last:border-0 text-left animate__animated animate__fadeIn">
+                                    <img src="${item.song.art}" class="w-10 h-10 rounded-md shadow-sm">
+                                    <div class="overflow-hidden">
+                                        <p class="text-white font-bold text-sm truncate">${item.song.title}</p>
+                                        <p class="text-gray-500 text-[10px] uppercase tracking-wider truncate">${item.song.artist}</p>
+                                    </div>
+                                </div>`;
+                        });
+                        const list = document.getElementById('history-list');
+                        if(list) list.innerHTML = html;
+                    }
+                })
+                .catch(err => {
+                    console.error("Erro na API:", err);
+                    const list = document.getElementById('history-list');
+                    if(list) list.innerHTML = "<p class='text-red-900 text-center text-[10px]'>ERRO AO CONECTAR COM O SERVIDOR</p>";
                 });
-                document.getElementById('history-list').innerHTML = html;
-            })
-            .catch(err => console.error("Erro na página de músicas:", err));
-    }
-    updateMusicasPage();
+        }
+
+        // Executa agora
+        updateMusicasPage();
+        
+        // Define um intervalo para atualizar enquanto a página estiver aberta
+        // Guardamos no window para poder limpar se necessário
+        if (window.historicoTimer) clearInterval(window.historicoTimer);
+        window.historicoTimer = setInterval(updateMusicasPage, 15000);
+    })();
 </script>
