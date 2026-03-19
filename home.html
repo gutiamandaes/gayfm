@@ -1,71 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GAY FM BRASIL | A rádio vibrante da comunidade LGBTQIA+</title>
-    
-    <meta name="description" content="A rádio oficial da diversidade. Ouça os melhores hits 24h por dia em www.gayfm.com.br">
-    <meta property="og:title" content="GAY FM BRASIL">
-    <meta property="og:description" content="Música, orgulho e diversidade 24h no ar.">
-    <meta property="og:url" content="https://www.gayfm.com.br">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+    .dark-card {
+        background-color: #0a0a0a; 
+        border: 1px solid #1a1a1a;
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        transition: all 0.3s ease;
+    }
+    .dark-card:hover {
+        border-color: #E40303; 
+        transform: translateY(-5px);
+        background-color: #111111;
+        box-shadow: 0 10px 30px -10px rgba(228, 3, 3, 0.3);
+    }
+</style>
 
-    <style>
-        /* FUNDO PRETO TOTAL */
-        body { font-family: 'Inter', sans-serif; background-color: #000000; color: white; margin: 0; padding: 0; }
-        
-        /* TEXTO ARCO-ÍRIS ANIMADO (Cores Reais e Vibrantes) */
-        .rainbow-text {
-            background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
-            background-size: 300% auto;
-            animation: rainbowMove 6s linear infinite;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 900;
-        }
-
-        @keyframes rainbowMove {
-            0% { background-position: 0% center; }
-            100% { background-position: 300% center; }
-        }
-
-        /* CARDS */
-        .dark-card {
-            background-color: #0a0a0a; 
-            border: 1px solid #1a1a1a;
-            padding: 1.5rem;
-            border-radius: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        .dark-card:hover {
-            border-color: #E40303; 
-            transform: translateY(-5px);
-            background-color: #111111;
-            box-shadow: 0 10px 30px -10px rgba(228, 3, 3, 0.3);
-        }
-
-        .rainbow-flow {
-            background: linear-gradient(270deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
-            background-size: 300% auto;
-            animation: rainbowFlow 5s linear infinite;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-        }
-
-        @keyframes rainbowFlow {
-            0% { background-position: 300% center; }
-            100% { background-position: 0% center; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="max-w-4xl mx-auto px-6 py-10 text-center">
-
+<div class="animate__animated animate__fadeIn">
     <h1 class="text-6xl md:text-7xl rainbow-text italic tracking-tighter mb-2">GAY FM BRASIL</h1>
     <p class="text-gray-400 font-medium tracking-wide">A rádio vibrante da comunidade LGBTQIA+</p>
 
@@ -78,8 +27,7 @@
     </div>
 
     <div class="grid md:grid-cols-2 gap-6 mt-12 text-left">
-        
-        <div onclick="location.href='musicas.html'" class="cursor-pointer dark-card">
+        <div onclick="carregarPagina('musicas.html')" class="cursor-pointer dark-card">
             <div class="text-4xl mb-3">🎧</div>
             <h3 class="font-bold text-xl rainbow-text">Música 24/7</h3>
             <p class="text-gray-500 text-sm mt-2">Programação musical ininterrupta com os maiores hits da cena global.</p>
@@ -91,13 +39,13 @@
             <p class="text-gray-500 text-sm mt-2">Celebrando a diversidade e a força da nossa comunidade todos os dias.</p>
         </div>
 
-        <div onclick="location.href='comunidade.html'" class="cursor-pointer dark-card">
+        <div onclick="carregarPagina('comunidade.html')" class="cursor-pointer dark-card">
             <div class="text-4xl mb-3">🤝</div>
             <h3 class="font-bold text-xl rainbow-text">Comunidade</h3>
             <p class="text-gray-500 text-sm mt-2">Um espaço seguro e acolhedor para conectar nossa tribo.</p>
         </div>
 
-        <div class="dark-card">
+        <div onclick="carregarPagina('mundo.html')" class="cursor-pointer dark-card">
             <div class="text-4xl mb-3">🌍</div>
             <h3 class="font-bold text-xl rainbow-text">Mundo</h3>
             <p class="text-gray-500 text-sm mt-2">Transmissão online de alta fidelidade alcançando todos os continentes.</p>
@@ -105,29 +53,13 @@
     </div>
 
     <div class="mt-12 dark-card p-10 max-w-2xl mx-auto cursor-pointer border-dashed border-zinc-800"
-         onclick="location.href='pedido_musica.html'">
+         onclick="carregarPagina('pedido_musica.html')">
         <h2 class="text-3xl mb-4 rainbow-text italic">🎤 Peça sua música</h2>
         <p class="text-gray-400">O que você quer ouvir agora? Clique e peça seu hit favorito!</p>
     </div>
 
-    <div class="mt-12 flex flex-wrap justify-center gap-4">
-        <a href="listen.pls" class="text-[10px] bg-zinc-950 text-gray-500 px-6 py-3 rounded-full border border-zinc-900 hover:text-white transition shadow-sm">WINAMP / ITUNES (.PLS)</a>
-        <a href="listen.asx" class="text-[10px] bg-zinc-950 text-gray-500 px-6 py-3 rounded-full border border-zinc-900 hover:text-white transition shadow-sm">WINDOWS MEDIA (.ASX)</a>
-    </div>
-
-    <footer class="mt-24 mb-40 text-gray-600 text-[11px] uppercase tracking-[0.2em]">
-        <span class="rainbow-text text-lg mb-3 block font-black">Gay FM Brasil</span>
-        <a href="https://www.gayfm.com.br" class="hover:text-gray-400 transition">WWW.GAYFM.COM.BR</a> <br>
-        Todos os direitos reservados &bull; 2026
+    <footer class="mt-24 mb-10 text-gray-600 text-[11px] uppercase tracking-[0.2em]">
+        <span class="rainbow-text text-lg mb-3 block font-black text-center">Gay FM Brasil</span>
+        <div class="text-center">Todos os direitos reservados &bull; 2026</div>
     </footer>
-
 </div>
-
-<div class="fixed bottom-0 left-0 w-full bg-black border-t border-zinc-900 text-center py-5 z-50 backdrop-blur-md bg-opacity-90">
-    <span class="rainbow-flow text-xl tracking-tighter uppercase font-black italic">
-        🎧 AO VIVO: GAY FM BRASIL - O SOM DA DIVERSIDADE
-    </span>
-</div>
-
-</body>
-</html>
