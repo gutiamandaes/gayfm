@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gay FM Brasil | Início</title>
-    
-    <meta name="description" content="Gay FM Brasil: A rádio vibrante da comunidade LGBTQIA+. Ouça os maiores hits, peça sua música e celebre a diversidade 24h por dia.">
-
+    <title>Gay FM Brasil | No Ar</title>
+    <meta name="description" content="Gay FM Brasil: A rádio vibrante da comunidade LGBTQIA+. Ouça os maiores hits em tempo real.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-    body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin:0; padding-bottom: 70px; /* Espaço para o player horizontal, que é mais baixo */ }
+    body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; margin:0; padding-bottom: 70px; }
     
-    /* TEXTO ARCO-ÍRIS (TÍTULOS PRINCIPAIS) */
     .rainbow-text {
         background: linear-gradient(90deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00bfff, #0000ff, #8b00ff);
         background-size: 300% auto;
@@ -24,7 +21,6 @@
     }
     @keyframes rainbowMove { 0%{background-position:0% center} 100%{background-position:300% center}}
 
-    /* TEXTO DA BARRA DO PLAYER (DIREITA → ESQUERDA) */
     .rainbow-flow {
         background: linear-gradient(270deg, #ff0000, #ff7f00, #ffff00, #00ff00, #00bfff, #0000ff, #8b00ff);
         background-size: 300% auto;
@@ -38,71 +34,35 @@
     .nav-link {cursor:pointer; margin:0 10px; font-weight:bold;}
     .nav-link:hover {text-decoration:underline;}
 
-    /* ==========================================================
-       ESTILOS DO NOVO PLAYER HORIZONTAL COM EQUALIZADOR
-       ========================================================== */
-    
     .fixed-player-horizontal {
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 60px; /* Altura fixa e baixa */
+        height: 65px;
         background-color: #000;
-        box-shadow: 0 -5px 25px rgba(228, 3, 3, 0.2); /* Brilho vermelho sutil */
-        z-50;
+        box-shadow: 0 -5px 25px rgba(228, 3, 3, 0.2);
+        z-index: 100;
         display: flex;
         align-items: center;
-        justify-content: space-between; /* Espaçamento entre os elementos */
-        padding: 0 20px; /* Padding nas laterais */
+        justify-content: space-between;
+        padding: 0 25px;
         border-top: 1px solid #111;
     }
 
-    /* O Equalizador em si (Longo e discreto) */
-    .equalizer-horizontal {
-        display: flex;
-        gap: 2px;
-        height: 15px; /* Mais baixo para caber na linha */
-        justify-content: center;
-        align-items: flex-end; /* Barras sobem a partir do fundo */
-    }
+    .equalizer-horizontal { display: flex; gap: 3px; height: 18px; align-items: flex-end; }
+    .bar { width: 4px; height: 100%; border-radius: 1px; animation: barBounce 0.8s ease-in-out infinite; transform-origin: bottom; }
+    
+    /* Cores das Barras */
+    .bar:nth-child(1) { background: #ff0000; animation-delay: -0.1s; }
+    .bar:nth-child(2) { background: #ff7f00; animation-delay: -0.2s; }
+    .bar:nth-child(3) { background: #ffff00; animation-delay: -0.3s; }
+    .bar:nth-child(4) { background: #00ff00; animation-delay: -0.4s; }
+    .bar:nth-child(5) { background: #00bfff; animation-delay: -0.5s; }
+    .bar:nth-child(6) { background: #0000ff; animation-delay: -0.6s; }
+    .bar:nth-child(7) { background: #8b00ff; animation-delay: -0.7s; }
 
-    .bar {
-        width: 3px; /* Barras mais finas */
-        height: 100%; 
-        border-radius: 1px;
-        animation: barBounce 0.8s ease-in-out infinite;
-        transform-origin: bottom;
-        opacity: 0.8;
-    }
-
-    /* Cores das barras imitando a imagem e repetindo */
-    .bar:nth-child(1) { background-color: #ff0000; animation-delay: -0.1s; } 
-    .bar:nth-child(2) { background-color: #ff7f00; animation-delay: -0.2s; } 
-    .bar:nth-child(3) { background-color: #ffff00; animation-delay: -0.3s; } 
-    .bar:nth-child(4) { background-color: #00ff00; animation-delay: -0.4s; } 
-    .bar:nth-child(5) { background-color: #00bfff; animation-delay: -0.5s; } 
-    .bar:nth-child(6) { background-color: #0000ff; animation-delay: -0.6s; } 
-    .bar:nth-child(7) { background-color: #8b00ff; animation-delay: -0.7s; } 
-    .bar:nth-child(8) { background-color: #ff0000; animation-delay: -0.8s; }
-    .bar:nth-child(9) { background-color: #ff7f00; animation-delay: -0.9s; }
-    .bar:nth-child(10){ background-color: #ffff00; animation-delay: -1.0s; }
-    .bar:nth-child(11){ background-color: #00ff00; animation-delay: -1.1s; }
-    .bar:nth-child(12){ background-color: #00bfff; animation-delay: -1.2s; }
-    .bar:nth-child(13){ background-color: #0000ff; animation-delay: -1.3s; }
-    .bar:nth-child(14){ background-color: #8b00ff; animation-delay: -1.4s; }
-    .bar:nth-child(15){ background-color: #ff0000; animation-delay: -1.5s; }
-
-    /* Animação das barras subindo e descendo */
-    @keyframes barBounce {
-        0%, 100% {
-            transform: scaleY(0.1); /* Barra muito baixinha */
-        }
-        50% {
-            transform: scaleY(1); /* Barra cheia */
-        }
-    }
-
+    @keyframes barBounce { 0%, 100% { transform: scaleY(0.2); } 50% { transform: scaleY(1); } }
 </style>
 </head>
 <body>
@@ -116,60 +76,65 @@
     </div>
 </div>
 
-<div id="conteudo" class="max-w-4xl mx-auto px-6 py-10">
-    <p class="text-center">Carregando conteúdo...</p>
+<div id="conteudo" class="max-w-4xl mx-auto px-6 py-10 text-center">
+    <p>Carregando conteúdo...</p>
 </div>
 
 <div class="fixed-player-horizontal">
-    
     <div class="flex items-center">
-        <span class="rainbow-flow text-sm font-bold tracking-tighter mr-2">
-            🎧 AO VIVO 24/7 - GAY FM BRASIL
-        </span>
+        <span class="rainbow-flow text-sm font-black mr-4 uppercase">Ao Vivo</span>
     </div>
 
     <div class="equalizer-horizontal">
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
     </div>
 
-    <div class="flex items-center max-w-[30%] overflow-hidden text-ellipsis whitespace-nowrap">
-        <p id="song-info" class="rainbow-text text-xs font-bold tracking-tighter" style="font-weight:700;">
-            Lady Gaga - Born This Way (Em breve)
-        </p>
+    <div class="flex-1 px-6 text-center overflow-hidden">
+        <p id="song-title" class="text-white text-xs font-bold uppercase tracking-widest truncate">Buscando música...</p>
+        <p id="song-artist" class="rainbow-text text-[10px] uppercase font-black truncate">Gay FM Brasil</p>
     </div>
 
     <div class="flex items-center">
-        <audio id="audio-player" controls autoplay loop class="h-7 w-48 opacity-70 hover:opacity-100 transition-opacity">
+        <audio id="audio-player" controls autoplay loop class="h-8 w-44 opacity-80 hover:opacity-100 transition-all">
             <source src="https://gayfmbr.mooo.com/listen/gay_fm_br/radio.mp3" type="audio/mpeg">
-            Seu navegador não suporta áudio.
         </audio>
     </div>
-
 </div>
 
 <script>
-function carregarPagina(pagina) {
-    fetch(pagina)
-        .then(res => {
-            if (!res.ok) throw new Error("Erro ao carregar a página");
-            return res.text();
-        })
-        .then(html => {
+    // Função para carregar páginas sem recarregar o site
+    function carregarPagina(pagina) {
+        fetch(pagina).then(res => res.text()).then(html => {
             document.getElementById("conteudo").innerHTML = html;
-        })
-        .catch(err => {
-            document.getElementById("conteudo").innerHTML = "<p>Erro ao carregar conteúdo.</p>";
-            console.error(err);
+        }).catch(() => {
+            document.getElementById("conteudo").innerHTML = "<p>Erro ao carregar.</p>";
         });
-}
+    }
 
-// Carrega a Home automaticamente assim que abrir o site
-window.onload = function() {
-    carregarPagina('home.html');
-};
+    // FUNÇÃO QUE BUSCA A MÚSICA NO AZURACAST
+    function atualizarMusica() {
+        // A API pública do seu AzuraCast
+        fetch('https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br')
+            .then(response => response.json())
+            .then(data => {
+                const musica = data.now_playing.song.title;
+                const artista = data.now_playing.song.artist;
+                
+                document.getElementById('song-title').innerText = musica;
+                document.getElementById('song-artist').innerText = artista;
+            })
+            .catch(err => {
+                console.error('Erro ao buscar metadados:', err);
+                document.getElementById('song-title').innerText = "GAY FM BRASIL";
+            });
+    }
+
+    // Inicia as funções
+    window.onload = function() {
+        carregarPagina('home.html');
+        atualizarMusica(); 
+        setInterval(atualizarMusica, 15000); // Atualiza a cada 15 segundos
+    };
 </script>
 
 </body>
