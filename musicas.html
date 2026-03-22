@@ -13,72 +13,61 @@
     <div class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl mb-8 border-l-4 border-l-red-600">
         <p class="text-red-500 text-[10px] font-black tracking-widest mb-3 uppercase">Tocando Agora</p>
         <div id="now-playing-page" class="flex items-center gap-4 text-left">
-            <img id="current-art-page" src="favicon.png" class="w-16 h-16 rounded-xl shadow-lg">
-            <div>
-                <h2 id="current-title-page" class="text-xl font-bold leading-tight">Carregando...</h2>
-                <p id="current-artist-page" class="text-gray-400 text-sm">Aguarde...</p>
+            <img id="current-art-page" src="favicon.png" class="w-16 h-16 rounded-xl shadow-lg border border-zinc-800">
+            <div class="overflow-hidden">
+                <h2 id="current-title-page" class="text-xl font-bold leading-tight truncate text-white uppercase">Sintonizando...</h2>
+                <p id="current-artist-page" class="text-gray-400 text-sm truncate">Gay FM Brasil</p>
             </div>
         </div>
     </div>
 
     <div class="bg-[#0a0a0a] border border-zinc-900 rounded-3xl overflow-hidden shadow-2xl mb-8">
-        <div class="p-4 border-b border-zinc-900 text-center">
-            <p class="text-[10px] text-red-500 font-black uppercase tracking-widest">Histórico em Tempo Real</p>
+        <div class="p-4 border-b border-zinc-900 text-center bg-[#0d0d0d]">
+            <p class="text-[10px] text-gray-500 font-black uppercase tracking-widest">Histórico do Estúdio</p>
         </div>
         <iframe src="https://gayfmbr.mooo.com/public/gay_fm_br/history" 
                 frameborder="0" 
                 allowtransparency="true" 
-                style="width: 100%; min-height: 450px; height: 450px; border: 0;">
+                style="width: 100%; min-height: 500px; height: 500px; border: 0;">
         </iframe>
-    </div>
-
-    <div id="history-list" class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl space-y-4 mb-8">
-        <p class="text-[10px] text-gray-700 font-bold uppercase tracking-widest text-center mb-4">Lista Detalhada</p>
-        <p class="text-center text-gray-600 text-xs animate-pulse">SINCRONIZANDO...</p>
     </div>
 </div>
 
 <script>
     (function() {
-        console.log("Iniciando atualização do histórico...");
-        
-        function updateMusicasPage() {
-            fetch("https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br")
+        const apiLink = "https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br";
+
+        function updateNowPlaying() {
+            fetch(apiLink)
                 .then(res => res.json())
                 .then(data => {
-                    const currentTitle = document.getElementById('current-title-page');
-                    if(currentTitle) {
-                        currentTitle.innerText = data.now_playing.song.title;
-                        document.getElementById('current-artist-page').innerText = data.now_playing.song.artist;
-                        document.getElementById('current-art-page').src = data.now_playing.song.art;
-                    }
+                    const song = data.now_playing.song;
+                    
+                    // Atualiza Título
+                    const titleEl = document.getElementById('current-title-page');
+                    if(titleEl) titleEl.innerText = song.title;
 
-                    let html = `<p class="text-[10px] text-gray-700 font-bold uppercase tracking-widest text-center mb-4">Lista Detalhada</p>`;
-                    if (data.song_history) {
-                        data.song_history.forEach(item => {
-                            html += `
-                                <div class="flex items-center gap-4 py-2 border-b border-zinc-900 last:border-0 text-left animate__animated animate__fadeIn">
-                                    <img src="${item.song.art}" class="w-10 h-10 rounded-md shadow-sm">
-                                    <div class="overflow-hidden">
-                                        <p class="text-white font-bold text-sm truncate">${item.song.title}</p>
-                                        <p class="text-gray-500 text-[10px] uppercase tracking-wider truncate">${item.song.artist}</p>
-                                    </div>
-                                </div>`;
-                        });
-                        const list = document.getElementById('history-list');
-                        if(list) list.innerHTML = html;
-                    }
+                    // Atualiza Artista
+                    const artistEl = document.getElementById('current-artist-page');
+                    if(artistEl) artistEl.innerText = song.artist;
+
+                    // Atualiza Capa
+                    const artEl = document.getElementById('current-art-page');
+                    if(artEl) artEl.src = song.art;
+                    
+                    console.log("Atualizado: " + song.title);
                 })
                 .catch(err => {
-                    console.error("Erro na API:", err);
-                    const list = document.getElementById('history-list');
-                    if(list) list.innerHTML = "<p class='text-red-900 text-center text-[10px]'>ERRO AO CONECTAR</p>";
+                    console.error("Erro ao buscar rádio:", err);
+                    document.getElementById('current-title-page').innerText = "Gay FM Brasil";
                 });
         }
 
-        updateMusicasPage();
+        // Inicia imediatamente
+        updateNowPlaying();
         
-        if (window.historicoTimer) clearInterval(window.historicoTimer);
-        window.historicoTimer = setInterval(updateMusicasPage, 15000);
+        // Atualiza a cada 10 segundos (mais rápido que o anterior)
+        if (window.radioTimer) clearInterval(window.radioTimer);
+        window.radioTimer = setInterval(updateNowPlaying, 10000);
     })();
 </script>
