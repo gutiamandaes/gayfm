@@ -21,13 +21,23 @@
         </div>
     </div>
 
-    <div id="history-list" class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl space-y-4">
+    <div id="history-list" class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl space-y-4 mb-8">
         <p class="text-center text-gray-600 text-xs animate-pulse">SINCRONIZANDO HISTÓRICO...</p>
+    </div>
+
+    <div class="bg-[#0a0a0a] border border-zinc-900 rounded-3xl overflow-hidden shadow-2xl mb-8">
+        <div class="p-4 border-b border-zinc-900">
+            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest text-center">Relatório do Servidor</p>
+        </div>
+        <iframe src="https://gayfmbr.mooo.com/public/gay_fm_br/history" 
+                frameborder="0" 
+                allowtransparency="true" 
+                style="width: 100%; min-height: 400px; height: 400px; border: 0;">
+        </iframe>
     </div>
 </div>
 
 <script>
-    // Usamos uma função que roda imediatamente para garantir o carregamento
     (function() {
         console.log("Iniciando atualização do histórico...");
         
@@ -35,7 +45,6 @@
             fetch("https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br")
                 .then(res => res.json())
                 .then(data => {
-                    // Atualiza Tocando Agora
                     const currentTitle = document.getElementById('current-title-page');
                     if(currentTitle) {
                         currentTitle.innerText = data.now_playing.song.title;
@@ -43,7 +52,6 @@
                         document.getElementById('current-art-page').src = data.now_playing.song.art;
                     }
 
-                    // Atualiza Lista de Histórico
                     let html = "";
                     if (data.song_history) {
                         data.song_history.forEach(item => {
@@ -67,11 +75,8 @@
                 });
         }
 
-        // Executa agora
         updateMusicasPage();
         
-        // Define um intervalo para atualizar enquanto a página estiver aberta
-        // Guardamos no window para poder limpar se necessário
         if (window.historicoTimer) clearInterval(window.historicoTimer);
         window.historicoTimer = setInterval(updateMusicasPage, 15000);
     })();
