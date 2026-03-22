@@ -12,7 +12,7 @@
 
     <div class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl mb-8 border-l-4 border-l-red-600">
         <p class="text-red-500 text-[10px] font-black tracking-widest mb-3 uppercase">Tocando Agora</p>
-        <div id="now-playing-page" class="flex items-center gap-4 text-left">
+        <div class="flex items-center gap-4 text-left">
             <img id="current-art-page" src="favicon.png" class="w-16 h-16 rounded-xl shadow-lg border border-zinc-800">
             <div class="overflow-hidden">
                 <h2 id="current-title-page" class="text-xl font-bold leading-tight truncate text-white uppercase">Sintonizando...</h2>
@@ -34,39 +34,29 @@
 </div>
 
 <script>
-    // Usamos um pequeno timeout para garantir que o HTML já foi renderizado pelo carregarPagina
-    setTimeout(function() {
-        function atualizarMusicaPagina() {
-            fetch('https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br')
-                .then(response => response.json())
-                .then(data => {
-                    const musica = data.now_playing.song.title;
-                    const artista = data.now_playing.song.artist;
-                    const capa = data.now_playing.song.art;
-                    
-                    const titleEl = document.getElementById('current-title-page');
-                    const artistEl = document.getElementById('current-artist-page');
-                    const artEl = document.getElementById('current-art-page');
-
-                    if (titleEl) titleEl.innerText = musica;
-                    if (artistEl) artistEl.innerText = artista;
-                    if (artEl) artEl.src = capa;
-                    
-                    console.log("Página Músicas: " + musica);
-                })
-                .catch(err => {
-                    console.error('Erro na página de músicas:', err);
-                    const titleEl = document.getElementById('current-title-page');
-                    if (titleEl) titleEl.innerText = "GAY FM BRASIL";
-                });
-        }
-
-        // Executa a primeira vez
-        atualizarMusicaPagina();
-
-        // Limpa timers antigos para não dar conflito e cria um novo para esta página
-        if (window.musicaPaginaTimer) clearInterval(window.musicaPaginaTimer);
-        window.musicaPaginaTimer = setInterval(atualizarMusicaPagina, 15000);
+    // Esta função lê os dados que já estão no player lá embaixo (index.html)
+    // Assim não precisamos de um novo "fetch" que pode travar.
+    function sincronizarComPlayer() {
+        const tituloPrincipal = document.getElementById('song-title');
+        const artistaPrincipal = document.getElementById('song-artist');
         
-    }, 100); // 100 milissegundos são suficientes para o DOM estar pronto
+        const tituloPagina = document.getElementById('current-title-page');
+        const artistaPagina = document.getElementById('current-artist-page');
+
+        if (tituloPrincipal && tituloPagina) {
+            tituloPagina.innerText = tituloPrincipal.innerText;
+            artistaPagina.innerText = artistaPrincipal.innerText;
+            
+            // Tenta pegar a capa se ela existir no player, senão usa a padrão
+            const artPagina = document.getElementById('current-art-page');
+            if(artPagina && window.currentArtCache) {
+                artPagina.src = window.currentArtCache;
+            }
+        }
+    }
+
+    // Tenta sincronizar agora e repete a cada 2 segundos para ficar idêntico ao player
+    sincronizarComPlayer();
+    if(window.timerSinc) clearInterval(window.timerSinc);
+    window.timerSinc = setInterval(sincronizarComPlayer, 2000);
 </script>
