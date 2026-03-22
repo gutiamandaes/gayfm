@@ -21,19 +21,20 @@
         </div>
     </div>
 
-    <div id="history-list" class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl space-y-4 mb-8">
-        <p class="text-center text-gray-600 text-xs animate-pulse">SINCRONIZANDO HISTÓRICO...</p>
-    </div>
-
     <div class="bg-[#0a0a0a] border border-zinc-900 rounded-3xl overflow-hidden shadow-2xl mb-8">
-        <div class="p-4 border-b border-zinc-900">
-            <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest text-center">Relatório do Servidor</p>
+        <div class="p-4 border-b border-zinc-900 text-center">
+            <p class="text-[10px] text-red-500 font-black uppercase tracking-widest">Histórico em Tempo Real</p>
         </div>
         <iframe src="https://gayfmbr.mooo.com/public/gay_fm_br/history" 
                 frameborder="0" 
                 allowtransparency="true" 
-                style="width: 100%; min-height: 400px; height: 400px; border: 0;">
+                style="width: 100%; min-height: 450px; height: 450px; border: 0;">
         </iframe>
+    </div>
+
+    <div id="history-list" class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl space-y-4 mb-8">
+        <p class="text-[10px] text-gray-700 font-bold uppercase tracking-widest text-center mb-4">Lista Detalhada</p>
+        <p class="text-center text-gray-600 text-xs animate-pulse">SINCRONIZANDO...</p>
     </div>
 </div>
 
@@ -52,7 +53,7 @@
                         document.getElementById('current-art-page').src = data.now_playing.song.art;
                     }
 
-                    let html = "";
+                    let html = `<p class="text-[10px] text-gray-700 font-bold uppercase tracking-widest text-center mb-4">Lista Detalhada</p>`;
                     if (data.song_history) {
                         data.song_history.forEach(item => {
                             html += `
@@ -71,7 +72,7 @@
                 .catch(err => {
                     console.error("Erro na API:", err);
                     const list = document.getElementById('history-list');
-                    if(list) list.innerHTML = "<p class='text-red-900 text-center text-[10px]'>ERRO AO CONECTAR COM O SERVIDOR</p>";
+                    if(list) list.innerHTML = "<p class='text-red-900 text-center text-[10px]'>ERRO AO CONECTAR</p>";
                 });
         }
 
