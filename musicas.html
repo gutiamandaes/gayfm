@@ -34,40 +34,39 @@
 </div>
 
 <script>
-    (function() {
-        const apiLink = "https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br";
-
-        function updateNowPlaying() {
-            fetch(apiLink)
-                .then(res => res.json())
+    // Usamos um pequeno timeout para garantir que o HTML já foi renderizado pelo carregarPagina
+    setTimeout(function() {
+        function atualizarMusicaPagina() {
+            fetch('https://gayfmbr.mooo.com/api/nowplaying/gay_fm_br')
+                .then(response => response.json())
                 .then(data => {
-                    const song = data.now_playing.song;
+                    const musica = data.now_playing.song.title;
+                    const artista = data.now_playing.song.artist;
+                    const capa = data.now_playing.song.art;
                     
-                    // Atualiza Título
                     const titleEl = document.getElementById('current-title-page');
-                    if(titleEl) titleEl.innerText = song.title;
-
-                    // Atualiza Artista
                     const artistEl = document.getElementById('current-artist-page');
-                    if(artistEl) artistEl.innerText = song.artist;
-
-                    // Atualiza Capa
                     const artEl = document.getElementById('current-art-page');
-                    if(artEl) artEl.src = song.art;
+
+                    if (titleEl) titleEl.innerText = musica;
+                    if (artistEl) artistEl.innerText = artista;
+                    if (artEl) artEl.src = capa;
                     
-                    console.log("Atualizado: " + song.title);
+                    console.log("Página Músicas: " + musica);
                 })
                 .catch(err => {
-                    console.error("Erro ao buscar rádio:", err);
-                    document.getElementById('current-title-page').innerText = "Gay FM Brasil";
+                    console.error('Erro na página de músicas:', err);
+                    const titleEl = document.getElementById('current-title-page');
+                    if (titleEl) titleEl.innerText = "GAY FM BRASIL";
                 });
         }
 
-        // Inicia imediatamente
-        updateNowPlaying();
+        // Executa a primeira vez
+        atualizarMusicaPagina();
+
+        // Limpa timers antigos para não dar conflito e cria um novo para esta página
+        if (window.musicaPaginaTimer) clearInterval(window.musicaPaginaTimer);
+        window.musicaPaginaTimer = setInterval(atualizarMusicaPagina, 15000);
         
-        // Atualiza a cada 10 segundos (mais rápido que o anterior)
-        if (window.radioTimer) clearInterval(window.radioTimer);
-        window.radioTimer = setInterval(updateNowPlaying, 10000);
-    })();
+    }, 100); // 100 milissegundos são suficientes para o DOM estar pronto
 </script>
