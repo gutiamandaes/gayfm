@@ -6,12 +6,20 @@
     <title>Comunidade | Gay FM Brasil</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #000000; color: white; margin: 0; overflow-x: hidden; }
         
-        .rainbow-line {
+        /* O PADRÃO GAY FM - LINHA TOTAL */
+        .full-rainbow-line {
             background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
             height: 4px;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
         }
 
         .rainbow-text {
@@ -35,7 +43,6 @@
             transition: all 0.3s ease;
         }
         
-        /* Estilo do Painel de Notícias */
         .news-container {
             height: 250px;
             overflow: hidden;
@@ -64,28 +71,29 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col items-center">
 
-    <div class="rainbow-line"></div>
+    <div class="full-rainbow-line"></div>
 
     <nav class="p-6 flex justify-between items-center max-w-5xl mx-auto w-full">
         <a href="home.html">
             <img src="favicon.png" alt="Gay FM Logo" class="h-8 w-auto object-contain">
         </a>
         <div class="space-x-4">
-            <a href="index.html" class="text-[10px] tracking-widest font-black text-gray-500 hover:text-white transition uppercase">VOLTAR</a>
+            <a href="home.html" class="text-[10px] tracking-widest font-black text-gray-500 hover:text-white transition uppercase">VOLTAR</a>
         </div>
     </nav>
 
-    <main class="flex-grow flex flex-col items-center px-6 text-center py-6">
+    <main class="flex-grow flex flex-col items-center px-6 text-center py-6 animate__animated animate__fadeIn">
         
-        <div class="mb-8">
-            <h1 class="text-4xl md:text-5xl rainbow-text italic tracking-tighter mb-2">
-                NOSSA TRIBO
+        <div class="mb-12">
+            <h1 class="text-4xl md:text-5xl rainbow-text italic tracking-tighter mb-2 uppercase font-black">
+                Nossa Tribo
             </h1>
+            <p class="text-gray-500 text-[10px] tracking-[0.3em] uppercase">Conectando o orgulho</p>
         </div>
 
-        <div class="w-full max-w-sm glass-card rounded-[2rem] p-6 mb-6">
+        <div class="w-full max-w-sm glass-card rounded-[2rem] p-6 mb-6 hover:border-blue-500 transition-all">
             <div class="flex items-center space-x-4">
                 <div class="bg-[#0088cc]/10 p-3 rounded-full">
                     <svg class="w-10 h-10 text-[#0088cc]" fill="currentColor" viewBox="0 0 24 24">
@@ -103,35 +111,34 @@
             </div>
         </div>
 
-        <div class="w-full max-w-sm glass-card rounded-[2rem] overflow-hidden flex flex-col mb-10">
+        <div class="w-full max-w-sm glass-card rounded-[2rem] overflow-hidden flex flex-col mb-12">
             <div class="p-4 bg-zinc-900/50 border-b border-zinc-800 text-left flex items-center justify-between">
-                <span class="text-xs font-black tracking-widest uppercase rainbow-text">Notícias Blog</span>
+                <span class="text-[10px] font-black tracking-widest uppercase rainbow-text">Notícias Blog</span>
                 <span class="bg-red-600 h-2 w-2 rounded-full animate-pulse"></span>
             </div>
             
             <div class="news-container" id="newsContainer">
                 <div class="news-scroll" id="newsList">
-                    <div class="news-item"><p class="text-gray-500 text-xs italic">Carregando últimas postagens...</p></div>
+                    <div class="news-item"><p class="text-gray-500 text-xs italic uppercase">Sintonizando informações...</p></div>
                 </div>
             </div>
         </div>
 
-        <button onclick="location.href='index.html'" 
+        <button onclick="location.href='home.html'" 
                 class="bg-zinc-900 text-gray-500 px-8 py-3 rounded-full font-bold hover:bg-zinc-800 hover:text-white transition-all text-[9px] uppercase tracking-[0.3em] border border-zinc-800">
-            ← Voltar
+            ← Voltar para a Home
         </button>
 
     </main>
 
     <footer class="p-8 text-center text-gray-700 text-[9px] uppercase tracking-[0.2em]">
-        <span class="rainbow-text text-xs mb-1 block font-black uppercase">Gay FM Brasil</span>
+        <span class="rainbow-text text-lg mb-1 block font-black uppercase italic">Gay FM Brasil</span>
         WWW.GAYFM.COM.BR &bull; 2026
     </footer>
 
     <script>
-        // Função para carregar notícias do Blog (Substitua a URL abaixo pelo seu RSS se tiver)
         async function loadNews() {
-            const RSS_URL = `https://gayfm7.wordpress.com/feed/`; // URL de exemplo
+            const RSS_URL = `https://gayfm7.wordpress.com/feed/`; 
             const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
 
             try {
@@ -141,25 +148,22 @@
                 
                 if (data.status === 'ok') {
                     let html = '';
-                    // Criamos o HTML das notícias
                     data.items.forEach(item => {
                         html += `
                             <div class="news-item">
-                                <a href="${item.link}" target="_blank" class="block">
-                                    <h3 class="text-sm font-bold text-white hover:text-red-500 transition-colors">${item.title}</h3>
-                                    <span class="text-[9px] text-gray-500 uppercase">${new Date(item.pubDate).toLocaleDateString()}</span>
+                                <a href="${item.link}" target="_blank" class="block group">
+                                    <h3 class="text-sm font-bold text-white group-hover:text-red-500 transition-colors uppercase leading-tight">${item.title}</h3>
+                                    <span class="text-[9px] text-gray-400 uppercase mt-1 block">${new Date(item.pubDate).toLocaleDateString()}</span>
                                 </a>
                             </div>
                         `;
                     });
-                    // Duplicamos o conteúdo para o efeito de scroll infinito (Loop)
-                    newsList.innerHTML = html + html;
+                    newsList.innerHTML = html + html; 
                 }
             } catch (error) {
                 console.error('Erro ao carregar notícias:', error);
             }
         }
-
         loadNews();
     </script>
 
