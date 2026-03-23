@@ -1,15 +1,30 @@
+<style>
+    /* Mantendo o padrão de linha que corta a tela (Full Width) */
+    .full-rainbow-line {
+        background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
+        height: 4px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+</style>
+
 <div class="animate__animated animate__fadeIn">
-    <div class="flex justify-end mb-4">
+    
+    <div class="full-rainbow-line mb-6"></div>
+
+    <div class="flex justify-end mb-8">
         <span onclick="carregarPagina('home.html')" class="text-[10px] tracking-widest font-black text-gray-500 hover:text-white uppercase cursor-pointer transition-all">
             ← VOLTAR
         </span>
     </div>
 
-    <header class="text-center mb-8">
+    <header class="text-center mb-10">
         <h1 class="text-5xl rainbow-text italic tracking-tighter mb-2 font-black">HISTÓRICO</h1>
-        <p class="text-gray-500 uppercase text-[10px] tracking-[0.3em] mb-6">Últimas músicas tocadas</p>
-        
-        <div class="w-full max-w-xs mx-auto h-[3px] rounded-full bg-gradient-to-r from-[#E40303] via-[#FF8C00] via-[#FFED00] via-[#008026] via-[#24408E] to-[#732982] opacity-80"></div>
+        <p class="text-gray-500 uppercase text-[10px] tracking-[0.3em]">Últimas músicas tocadas</p>
     </header>
 
     <div class="bg-[#0a0a0a] border border-zinc-900 p-6 rounded-3xl mb-8 border-l-4 border-l-red-600 shadow-xl">
@@ -42,7 +57,7 @@
 </div>
 
 <script>
-    // Sincronização inteligente com o player global
+    // Sincronização inteligente com o player global (index.html)
     function sincronizarComPlayer() {
         const tituloPrincipal = document.getElementById('song-title');
         const artistaPrincipal = document.getElementById('song-artist');
@@ -64,7 +79,7 @@
 
     sincronizarComPlayer();
     
-    // Limpa timers anteriores para não sobrecarregar
+    // Gestão de memória para o timer
     if(window.timerSinc) clearInterval(window.timerSinc);
     window.timerSinc = setInterval(sincronizarComPlayer, 2000);
 </script>
