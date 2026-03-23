@@ -12,58 +12,71 @@
         background-color: #111111;
         box-shadow: 0 10px 30px -10px rgba(228, 3, 3, 0.3);
     }
+    /* Classe para a linha full-width que foge do padding do container se necessário */
+    .full-rainbow-line {
+        background: linear-gradient(90deg, #E40303, #FF8C00, #FFED00, #008026, #24408E, #732982);
+        height: 4px;
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
 </style>
 
-<div class="animate__animated animate__fadeIn text-center">
+<div class="animate__animated animate__fadeIn">
     
-    <div class="w-24 mx-auto h-[4px] rounded-full bg-gradient-to-r from-[#E40303] via-[#FF8C00] via-[#FFED00] via-[#008026] via-[#24408E] to-[#732982] mb-6 shadow-[0_0_15px_rgba(228,3,3,0.4)]"></div>
+    <div class="full-rainbow-line mb-12"></div>
 
-    <h1 class="text-5xl md:text-6xl rainbow-text italic tracking-tighter mb-2 font-black">GAY FM BRASIL</h1>
-    <p class="text-gray-400 font-medium tracking-wide uppercase text-sm">A rádio vibrante da comunidade LGBTQIA+</p>
+    <div class="text-center">
+        <h1 class="text-5xl md:text-6xl rainbow-text italic tracking-tighter mb-2 font-black">GAY FM BRASIL</h1>
+        <p class="text-gray-400 font-medium tracking-wide uppercase text-sm">A rádio vibrante da comunidade LGBTQIA+</p>
 
-    <div class="mt-20 mb-16">
-        <h2 class="text-2xl mb-4 rainbow-text italic uppercase tracking-widest font-bold">Sobre a Gay FM Brasil</h2>
-        <p class="text-gray-400 max-w-2xl mx-auto leading-relaxed text-lg">
-            Somos mais que uma rádio. Somos uma voz para a diversidade, trazendo música,
-            informação e entretenimento para a comunidade LGBTQIA+ e aliados.
-        </p>
+        <div class="mt-20 mb-16">
+            <h2 class="text-2xl mb-4 rainbow-text italic uppercase tracking-widest font-bold">Sobre a Gay FM Brasil</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto leading-relaxed text-lg text-center">
+                Somos mais que uma rádio. Somos uma voz para a diversidade, trazendo música,
+                informação e entretenimento para a comunidade LGBTQIA+ e aliados.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mt-12 text-left">
+            <div onclick="carregarPagina('musicas.html')" class="cursor-pointer dark-card group">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🎧</div>
+                <h3 class="font-bold text-xl rainbow-text uppercase">Música 24/7</h3>
+                <p class="text-gray-500 text-sm mt-2">Programação musical ininterrupta com os maiores hits da cena global.</p>
+            </div>
+
+            <div class="dark-card group">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🌈</div>
+                <h3 class="font-bold text-xl rainbow-text uppercase">Orgulho</h3>
+                <p class="text-gray-400 text-sm mt-2 font-medium">Celebrando a diversidade e a força da nossa comunidade todos os dias.</p>
+            </div>
+
+            <div onclick="carregarPagina('comunidade.html')" class="cursor-pointer dark-card group">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🤝</div>
+                <h3 class="font-bold text-xl rainbow-text uppercase">Comunidade</h3>
+                <p class="text-gray-500 text-sm mt-2">Um espaço seguro e acolhedor para conectar nossa tribo.</p>
+            </div>
+
+            <div onclick="carregarPagina('mundo.html')" class="cursor-pointer dark-card group">
+                <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🌍</div>
+                <h3 class="font-bold text-xl rainbow-text uppercase">Mundo</h3>
+                <p class="text-gray-500 text-sm mt-2">Transmissão online de alta fidelidade alcançando todos os continentes.</p>
+            </div>
+        </div>
+
+        <div class="mt-12 dark-card p-10 max-w-2xl mx-auto cursor-pointer border-dashed border-zinc-800 hover:border-solid transition-all"
+             onclick="carregarPagina('pedido_musica.html')">
+            <h2 class="text-3xl mb-4 rainbow-text italic font-black uppercase">🎤 Peça sua música</h2>
+            <p class="text-gray-400">O que você quer ouvir agora? Clique e peça seu hit favorito!</p>
+        </div>
+
+        <footer class="mt-24 mb-10 text-gray-600 text-[11px] uppercase tracking-[0.2em]">
+            <div class="w-10 mx-auto h-[1px] bg-zinc-800 mb-6"></div>
+            <span class="rainbow-text text-lg mb-1 block font-black text-center italic">Gay FM Brasil</span>
+            <div class="text-center">Todos os direitos reservados &bull; 2026</div>
+        </footer>
     </div>
-
-    <div class="grid md:grid-cols-2 gap-6 mt-12 text-left">
-        <div onclick="carregarPagina('musicas.html')" class="cursor-pointer dark-card group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🎧</div>
-            <h3 class="font-bold text-xl rainbow-text uppercase">Música 24/7</h3>
-            <p class="text-gray-500 text-sm mt-2">Programação musical ininterrupta com os maiores hits da cena global.</p>
-        </div>
-
-        <div class="dark-card group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🌈</div>
-            <h3 class="font-bold text-xl rainbow-text uppercase">Orgulho</h3>
-            <p class="text-gray-400 text-sm mt-2 font-medium">Celebrando a diversidade e a força da nossa comunidade todos os dias.</p>
-        </div>
-
-        <div onclick="carregarPagina('comunidade.html')" class="cursor-pointer dark-card group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🤝</div>
-            <h3 class="font-bold text-xl rainbow-text uppercase">Comunidade</h3>
-            <p class="text-gray-500 text-sm mt-2">Um espaço seguro e acolhedor para conectar nossa tribo.</p>
-        </div>
-
-        <div onclick="carregarPagina('mundo.html')" class="cursor-pointer dark-card group">
-            <div class="text-4xl mb-3 group-hover:scale-110 transition-transform">🌍</div>
-            <h3 class="font-bold text-xl rainbow-text uppercase">Mundo</h3>
-            <p class="text-gray-500 text-sm mt-2">Transmissão online de alta fidelidade alcançando todos os continentes.</p>
-        </div>
-    </div>
-
-    <div class="mt-12 dark-card p-10 max-w-2xl mx-auto cursor-pointer border-dashed border-zinc-800 hover:border-solid transition-all"
-         onclick="carregarPagina('pedido_musica.html')">
-        <h2 class="text-3xl mb-4 rainbow-text italic font-black uppercase">🎤 Peça sua música</h2>
-        <p class="text-gray-400">O que você quer ouvir agora? Clique e peça seu hit favorito!</p>
-    </div>
-
-    <footer class="mt-24 mb-10 text-gray-600 text-[11px] uppercase tracking-[0.2em]">
-        <div class="w-10 mx-auto h-[1px] bg-zinc-800 mb-6"></div>
-        <span class="rainbow-text text-lg mb-1 block font-black text-center italic">Gay FM Brasil</span>
-        <div class="text-center">Todos os direitos reservados &bull; 2026</div>
-    </footer>
 </div>
