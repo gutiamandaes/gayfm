@@ -44,7 +44,7 @@
         }
         
         .news-container {
-            height: 250px;
+            height: 250px; /* Altura da janela de visualização */
             overflow: hidden;
             position: relative;
         }
@@ -52,7 +52,7 @@
         .news-scroll {
             display: flex;
             flex-direction: column;
-            animation: scrollUp 20s linear infinite;
+            animation: scrollUp 30s linear infinite; /* Velocidade ajustada para leitura */
         }
 
         .news-scroll:hover {
@@ -61,7 +61,7 @@
 
         @keyframes scrollUp {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+            100% { transform: translateY(-50%); } /* Sobe até a metade (onde começa a repetição) */
         }
 
         .news-item {
@@ -106,7 +106,7 @@
                 </div>
                 <a href="https://t.me/gayfmbr" target="_blank" 
                    class="bg-[#0088cc] text-white px-4 py-2 rounded-xl font-bold text-xs hover:scale-105 transition-all uppercase">
-                   Entrar
+                    Entrar
                 </a>
             </div>
         </div>
@@ -138,6 +138,7 @@
 
     <script>
         async function loadNews() {
+            // Endereço do feed do seu WordPress
             const RSS_URL = `https://gayfm7.wordpress.com/feed/`; 
             const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
 
@@ -146,24 +147,37 @@
                 const data = await response.json();
                 const newsList = document.getElementById('newsList');
                 
-                if (data.status === 'ok') {
+                if (data.status === 'ok' && data.items.length > 0) {
                     let html = '';
                     data.items.forEach(item => {
+                        // Limpa o título caso venha com caracteres especiais de HTML
+                        const cleanTitle = item.title.replace(/<[^>]*>/g, '');
+                        // Formata a data para PT-BR
+                        const pubDate = new Date(item.pubDate).toLocaleDateString('pt-BR');
+
                         html += `
                             <div class="news-item">
                                 <a href="${item.link}" target="_blank" class="block group">
-                                    <h3 class="text-sm font-bold text-white group-hover:text-red-500 transition-colors uppercase leading-tight">${item.title}</h3>
-                                    <span class="text-[9px] text-gray-400 uppercase mt-1 block">${new Date(item.pubDate).toLocaleDateString()}</span>
+                                    <h3 class="text-sm font-bold text-white group-hover:text-red-500 transition-colors uppercase leading-tight">
+                                        ${cleanTitle}
+                                    </h3>
+                                    <span class="text-[9px] text-gray-400 uppercase mt-1 block">${pubDate}</span>
                                 </a>
                             </div>
                         `;
                     });
+
+                    // Duplicamos o conteúdo para o efeito de scroll infinito não ter "buracos"
                     newsList.innerHTML = html + html; 
+                } else {
+                    newsList.innerHTML = '<div class="news-item"><p class="text-gray-500 text-xs uppercase">Nenhuma notícia encontrada.</p></div>';
                 }
             } catch (error) {
                 console.error('Erro ao carregar notícias:', error);
+                document.getElementById('newsList').innerHTML = '<div class="news-item"><p class="text-red-500 text-xs uppercase">Erro de conexão com o blog.</p></div>';
             }
         }
+        
         loadNews();
     </script>
 
